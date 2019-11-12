@@ -6,6 +6,7 @@ const typeDefs = gql`
     name: String
     description: String
     image: String
+    price: Int
   }
 
   type Query {
@@ -15,7 +16,9 @@ const typeDefs = gql`
 
 const resolvers = {};
 
-const mocks = {};
+const mocks = {
+  Int: () => 123000
+};
 
 module.exports = {
   typeDefs,

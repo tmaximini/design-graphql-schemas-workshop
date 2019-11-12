@@ -8,8 +8,8 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => 'Real Hello Workshop',
-  },
+    hello: () => "Real Hello Workshop"
+  }
 };
 
 const mocks = {

@@ -24,13 +24,38 @@ const typeDefs = gql`
     pageInfo: PageInfo!
   }
 
+  type User {
+    id: ID!
+    name: String!
+  }
+
+  type Review {
+    user: User
+    stars: Int!
+    text: String
+  }
+
+  type ReviewEdge {
+    node: Review!
+    cursor: ID!
+  }
+
+  type ReviewsConnection {
+    edges: [ReviewEdge]
+    pageInfo: PageInfo!
+  }
+
   type Product {
     id: ID!
     name: String
     description(format: String, locale: String): String
     imageUrl: String @deprecated(reason: "Use \`image { source }\`.")
     image: Image
-    recommendedProducts(first: Int!, after: ID): [RecommendedProductsConnection!]
+    recommendedProducts(
+      first: Int!
+      after: ID
+    ): [RecommendedProductsConnection!]
+    reviews(first: Int!, after: ID): [ReviewsConnection!]
   }
 
   type Query {
@@ -48,3 +73,32 @@ module.exports = {
   mocks,
   mockEntireSchema: false
 };
+
+/**
+ * {
+  product(id: "abc") {
+    image {
+      source
+    }
+    name
+		recommendedProducts(first: 5) {
+      edges {
+        node {
+          id
+          name
+          image {
+            source
+            description
+          }
+        }
+    	}
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+    }
+  }
+}
+ */

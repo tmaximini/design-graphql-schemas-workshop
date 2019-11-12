@@ -2,17 +2,37 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Image {
-    source: String # Url scalar
+    sourceUrl: String # Url scalar
     description: String
-    thumbnailSource(width: Int, height: Int): String # Url scalar
+    thumbnailUrl(width: Int, height: Int): String # Url scalar
+  }
+
+  type StockItem {
+    productId: String!
+    size: String
+    quantity: Int
+  }
+
+  enum Currency {
+    EUR
+    USD
+  }
+
+  type Price {
+    amount: Int
+    currency: Currency
   }
 
   type Product {
     id: ID!
     name: String
+    brand: String
+    price(currency: String): Price
     description: String
-    imageUrl: String @deprecated(reason: "Use \`image { source }\`.")
+    descriptionHtml: String
+    imageUrl: String @deprecated(reason: "Use \`image { sourceUrl }\` instead.")
     image: Image
+    stockItems: [StockItem!]!
   }
 
   type Query {
@@ -22,7 +42,17 @@ const typeDefs = gql`
 
 const resolvers = {};
 
-const mocks = {};
+const mocks = {
+  StockItem: () => ({
+    productId: "abc",
+    size: "M",
+    quantity: 12
+  }),
+  Price: () => ({
+    amount: 1230,
+    currency: "EUR"
+  })
+};
 
 module.exports = {
   typeDefs,

@@ -12,7 +12,7 @@ const { ApolloServer } = require("apollo-server");
 // const lesson = require("./lesson05/after");
 // const lesson = require("./lesson06/before");
 // const lesson = require("./lesson06/step1");
-// const lesson = require("./lesson06/after");
+const lesson = require("./lesson06/after");
 // const lesson = require("./lesson07/before");
 // const lesson = require("./lesson07/after");
 // const lesson = require("./lesson08/before");
@@ -24,7 +24,7 @@ const { ApolloServer } = require("apollo-server");
 // const lesson = require("./lesson11/before");
 // const lesson = require("./lesson11/after");
 // const lesson = require("./lesson12/before");
-const lesson = require("./lesson12/after");
+// const lesson = require("./lesson12/after");
 
 const server = new ApolloServer(lesson);
 
