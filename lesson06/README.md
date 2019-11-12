@@ -16,7 +16,7 @@ Final:
       source
       description
     }
-    recommendedProducts(first: 10) {
+  	recommendedProducts(first: 10) {
       edges {
         node {
           name
@@ -41,7 +41,7 @@ Final:
 ## Exercise
 
 Add the field `reviews` to the product.
-A review includes a mandatory star voting, an optional text and a mandatory connection to one user.
+A review includes a mandatory star voting (1-5), an optional text and a mandatory connection to one user.
 Further it should be possible to retrieve if the reviewer actually purchased the product.
 
-**Hint**: The User type can simply include ID and username.
+__Hint__: The User type can simply include ID and username.
